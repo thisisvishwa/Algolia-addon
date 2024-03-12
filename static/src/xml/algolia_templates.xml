@@ -1,0 +1,46 @@
+<templates>
+    <t t-name="algolia-autocomplete-template">
+        <ul class="algolia-autocomplete-list">
+            <li t-foreach="widget.hits" t-as="hit" class="algolia-autocomplete-item">
+                <a t-att-href="'/product/' + hit.objectID">
+                    <div class="media">
+                        <img t-att-src="hit.image" class="mr-3 algolia-autocomplete-image" alt="Product Image"/>
+                        <div class="media-body">
+                            <h5 class="mt-0 algolia-autocomplete-title"><t t-esc="hit.name"/></h5>
+                            <p t-if="hit.description" class="algolia-autocomplete-description"><t t-esc="hit.description"/></p>
+                            <div t-if="hit.price" class="algolia-autocomplete-price">
+                                <t t-esc="hit.currency"/> <t t-esc="hit.price"/>
+                            </div>
+                            <div t-if="hit.rating" class="algolia-autocomplete-rating">
+                                <t t-esc="hit.rating"/> / 5
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </t>
+
+    <t t-name="algolia-search-results-template">
+        <div id="algolia-search-results" class="algolia-results">
+            <t t-foreach="widget.hits" t-as="hit" class="algolia-result-item">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img t-att-src="hit.image" class="card-img" alt="Product Image"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><t t-esc="hit.name"/></h5>
+                                <p class="card-text"><t t-esc="hit.description"/></p>
+                                <p class="card-text"><small class="text-muted">Category: <t t-esc="hit.category"/></small></p>
+                                <p class="card-text algolia-result-price"><t t-esc="hit.currency"/> <t t-esc="hit.price"/></p>
+                                <p class="card-text algolia-result-rating"><t t-esc="hit.rating"/> / 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

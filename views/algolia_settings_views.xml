@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+
+        <!-- Algolia Settings Form View -->
+        <record id="view_algolia_settings_form" model="ir.ui.view">
+            <field name="name">algolia.settings.form</field>
+            <field name="model">algolia.integration</field>
+            <field name="arch" type="xml">
+                <form string="Algolia Settings">
+                    <sheet>
+                        <group>
+                            <group string="API Credentials">
+                                <field name="algolia_app_id" string="Algolia APP ID"/>
+                                <field name="algolia_api_key" string="Algolia API Key"/>
+                            </group>
+                            <group string="Index Configuration">
+                                <field name="algolia_index_name" string="Algolia Index Name"/>
+                            </group>
+                        </group>
+                        <group string="Indexing Options">
+                            <field name="auto_indexing" string="Automatic Indexing"/>
+                        </group>
+                        <group string="Search Experience">
+                            <field name="enable_faceting" string="Enable Faceting"/>
+                            <field name="enable_typo_tolerance" string="Enable Typo Tolerance"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Algolia Settings Action -->
+        <record id="action_algolia_settings" model="ir.actions.act_window">
+            <field name="name">Algolia Settings</field>
+            <field name="res_model">algolia.integration</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_algolia_settings_form"/>
+            <field name="target">inline</field>
+        </record>
+
+        <!-- Algolia Settings Menu Item -->
+        <menuitem id="menu_algolia_settings" name="Algolia Settings"
+                  action="action_algolia_settings"
+                  parent="base.menu_custom"
+                  sequence="10"/>
+
+    </data>
+</odoo>
